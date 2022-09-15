@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ceviche+One&family=Inter:wght@900&family=Jua&family=Koulen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'category.css' %}">
+  <title>Category</title>
+</head>
+<body>
+  <h1>백엔드 게시판</h1>
+  <div>
+    <ul>
+      {% for post in posts %}
+      <li>
+        <a href="{% url 'detail' post.pk %}">{{ post.title }}({{ post.like_num }})</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <a href="{% url 'new' %}">글 쓰러 가기</a>
+</body>
+</html>

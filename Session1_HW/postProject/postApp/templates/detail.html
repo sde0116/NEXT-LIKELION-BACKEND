@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Ceviche+One&family=Inter:wght@900&family=Jua&family=Koulen&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'detail.css' %}">
+  <title>Detail</title>
+</head>
+
+<body>
+  <div>
+    <h2>category</h2>
+    <p>{{ post.category }}</p>
+  </div>
+  <div>
+    <h2>title</h2>
+    <p>{{ post.title }}</p>
+  </div>
+  <div>
+    <h2>content</h2>
+    <p>{{ post.content }}</p>
+  </div>
+  <a href="{% url 'home' %}">홈으로</a><br>
+  <a href="{% url 'new' %}">글 쓰러 가기</a><br>
+  <a href="{% url 'edit' post.pk %}">수정하기</a><br>
+  <a href="{% url 'delete' post.pk %}">삭제하기</a><br>
+  <br>
+  <!-- comment -->
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="content" placeholder="댓글을 입력해주세요">
+    <button type="submit">작성하기</button>
+  </form>
+  <br>
+
+  {% for comment in post.comments.all %}
+  <ul>
+    {{comment.content}}
+    <a href="{% url 'edit-comment' post.pk comment.pk %}">수정</a>
+    <a href="{% url 'delete-comment' post.pk comment.pk %}">삭제</a>
+  </ul>
+  {% endfor %}
+
+</body>
+
+</html>

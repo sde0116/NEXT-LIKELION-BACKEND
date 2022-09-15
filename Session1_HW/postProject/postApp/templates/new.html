@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ceviche+One&family=Inter:wght@900&family=Jua&family=Koulen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'new.css' %}">
+  <title>New</title>
+</head>
+<body>
+  <h1>글 쓰기 페이지</h1>
+
+  <div id="form" style="margin:auto;text-align:center;">
+    <form action="/new" method="post" style="display:inline-block;">
+      {% csrf_token %}
+      <br>
+      <div>
+        <label for="category">category</label>
+        <input type="text" name="category" id="category" placeholder="카테고리를 입력해주세요.">
+      </div>
+      <br>
+      <div>
+        <label for="title">title</label>
+        <input type="text" name="title" id="title" placeholder="제목을 입력해주세요.">
+      </div>
+      <br>
+      <div>
+        <label for="content">content</label>
+        <textarea name="content" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요."></textarea>
+      </div>
+      <button type="submit">submit</button>
+      <br>
+    </form>    
+  </div>
+
+</body>
+</html>
